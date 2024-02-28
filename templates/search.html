@@ -1,0 +1,41 @@
+{%extends "base.html"%}
+{%block content%}
+<br>
+<br>
+<form action="/search1" method="POST">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Enter the word you want to search</label>
+        <input type="text" class="form-control" id="search" placeholder="Enter here" name="search">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<br>
+<br>
+<!-- {% if data %}
+{% for file_name, lines in data.items() %}
+    <h2 style="color: rgb(206, 33, 73);">Total {{count}} time {{search}} was found in {{ file_name }}</h2>
+    <ol style= "font: 10px";>
+       {% for line in lines %}
+            {{ line }}
+            <br>
+        {% endfor %}
+    </ol>
+{% endfor %}
+{% endif %} -->
+{% if data %}
+    {% for file_name, lines in data.items() %}
+        <h2 style="color: rgb(206, 33, 73);">{{ file_name }}</h2>
+        {% if lines|length > 1 %}
+            <p>{{ lines|length }} lines found for {{search}}:</p>
+
+        {% endif %}
+        {% for line in lines %}
+            {{ line }}
+            <br>
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+
+{%endblock%}
+```
